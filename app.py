@@ -3,11 +3,11 @@ from flask import Flask, render_template, request, jsonify
 import re
 import requests
 import json
-
+import os
 
 app = Flask(__name__)
 
-API_KEY = "AIzaSyCpwd7gYMjOuc5fqGrwrhZacKY64o6p4JY"    # <-- Replace with your Gemini or Cohere Key
+API_KEY = os.environ.get("API_KEY")   # <-- Replace with your Gemini or Cohere Key
 API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=" + API_KEY
 
 def preprocess(text):
