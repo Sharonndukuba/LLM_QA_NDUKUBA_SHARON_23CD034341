@@ -1,0 +1,100 @@
+/* ------- GLOBAL THEME ------- */
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #0b0f29, #1b103d, #150b2d);
+    background-size: 300% 300%;
+    animation: gradientShift 12s ease infinite;
+    font-family: 'Segoe UI', sans-serif;
+    color: #e4e2ff;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ------- LAYOUT ------- */
+.container {
+    width: 80%;
+    max-width: 900px;
+    margin: 60px auto;
+    text-align: center;
+}
+
+/* ------- TITLES ------- */
+.title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #b18cff;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #cfcfff;
+    font-size: 1.1rem;
+    margin-bottom: 35px;
+}
+
+/* ------- CARD ------- */
+.card {
+    background: rgba(255, 255, 255, 0.06);
+    padding: 25px;
+    border-radius: 14px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+}
+
+/* ------- INPUT & BUTTON ------- */
+input[type="text"] {
+    width: 70%;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    margin-right: 10px;
+    color: #ffffff;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+}
+
+button {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(135deg, #6a4cff, #9a5dff);
+    color: white;
+    transition: 0.2s ease-in-out;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #7d55ff, #af77ff);
+}
+
+/* ------- OUTPUT BOXES ------- */
+.output-section {
+    margin-top: 35px;
+    text-align: left;
+}
+
+.output-section h2 {
+    color: #d0b2ff;
+    margin-top: 25px;
+}
+
+.output-box {
+    background: rgba(255,255,255,0.05);
+    padding: 15px;
+    border-left: 4px solid #8250ff;
+    border-radius: 8px;
+    min-height: 50px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    backdrop-filter: blur(6px);
+    color: #e8e4ff;
+}

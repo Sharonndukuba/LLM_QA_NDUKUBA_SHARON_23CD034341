@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LLM Q&A System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1 class="title">💬 LLM Question & Answering System</h1>
+    <p class="subtitle">Ask any question and receive an instant AI-powered response.</p>
+
+    <div class="card">
+        <form id="qa-form">
+            <input type="text" id="question" name="question" placeholder="Type your question here..." required>
+            <button type="submit">Ask AI</button>
+        </form>
+    </div>
+
+    <div class="output-section">
+        <h2>Processed Question</h2>
+        <p id="processed" class="output-box"></p>
+
+        <h2>AI Response</h2>
+        <p id="answer" class="output-box"></p>
+    </div>
+
+</div>
+
+
+<script>
+document.getElementById("qa-form").onsubmit = async function(e) {
+    e.preventDefault();
+    var q = document.getElementById("question").value;
+
+    let response = await fetch("/ask", {
+        method: "POST",
+        headers: {"Content-Type": "application/x-www-form-urlencoded"},
+        body: "question=" + q
+    });
+
+    let data = await response.json();
+
+    document.getElementById("processed").innerText = data.processed;
+    document.getElementById("answer").innerText = data.answer;
+};
+</script>
+
+</body>
+</html>
