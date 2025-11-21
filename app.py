@@ -2,6 +2,8 @@
 from flask import Flask, render_template, request, jsonify
 import re
 import requests
+import json
+
 
 app = Flask(__name__)
 
@@ -15,14 +17,33 @@ def preprocess(text):
     return " ".join(tokens)
 
 def ask_llm(question):
-    payload = {
-        "contents": [{
-            "parts": [{"text": question}]
-        }]
-    }
-    response = requests.post(API_URL, json=payload)
-    data = response.json()
-    return data["candidates"][0]["content"]["parts"][0]["text"]
+    def ask_llm(question):
+        headers = {
+            "Content-Type": "application/json",
+        }
+
+        payload = {
+            "prompt": {
+                "messages": [
+                    {"role": "user", "content": [{"type": "text", "text": question}]}
+                ]
+            }
+        }
+
+        response = requests.post(API_URL, headers=headers, json=payload)
+        data = response.json()
+
+        # Debug: print the full response to see what Gemini returned
+        print(json.dumps(data, indent=2))
+
+        # Safe extraction
+        if "candidates" in data and len(data["candidates"]) > 0:
+            candidate = data["candidates"][0]
+            if "content" in candidate and len(candidate["content"]) > 0:
+                parts = candidate["content"][0].get("parts", [])
+                if len(parts) > 0:
+                    return parts[0].get("text", "No text returned")
+        return "No valid answer returned from the API"
 
 @app.route("/")
 def home():
